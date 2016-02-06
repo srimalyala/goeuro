@@ -78,6 +78,31 @@ public class Application implements CommandLineRunner {
     }
 
     /**
+     * creates a line of city information
+     *
+     * @param cityInfo
+     * @return
+     */
+    private String createCityInfoCsvLine(CityInfo cityInfo) {
+        final StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(cityInfo.get_id()).append(",");
+
+        stringBuilder.append(cityInfo.getName()).append(",");
+
+        stringBuilder.append(cityInfo.getType()).append(",");
+
+        if (cityInfo.getGeo_position() != null) {
+            stringBuilder.append(cityInfo.getGeo_position().getLatitude()).append(",");
+            stringBuilder.append(cityInfo.getGeo_position().getLongitude());
+        } else {
+            stringBuilder.append(",,");
+        }
+
+        return stringBuilder.toString();
+    }
+    
+    /**
      * @param fileName
      * @param directory
      * @return
@@ -106,28 +131,4 @@ public class Application implements CommandLineRunner {
         }
     }
 
-    /**
-     * creates a line of city information
-     *
-     * @param cityInfo
-     * @return
-     */
-    private String createCityInfoCsvLine(CityInfo cityInfo) {
-        final StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(cityInfo.get_id()).append(",");
-
-        stringBuilder.append(cityInfo.getName()).append(",");
-
-        stringBuilder.append(cityInfo.getType()).append(",");
-
-        if (cityInfo.getGeo_position() != null) {
-            stringBuilder.append(cityInfo.getGeo_position().getLatitude()).append(",");
-            stringBuilder.append(cityInfo.getGeo_position().getLongitude());
-        } else {
-            stringBuilder.append(",,");
-        }
-
-        return stringBuilder.toString();
-    }
 }
