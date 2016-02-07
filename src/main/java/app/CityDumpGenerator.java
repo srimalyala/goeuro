@@ -27,6 +27,10 @@ public class CityDumpGenerator implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(CityDumpGenerator.class);
 
     public static void main(String args[]) {
+        if (args.length == 0) {
+            log.info("please pass city name as command line argument..");
+            return;
+        }
         SpringApplication.run(CityDumpGenerator.class, args[0]);
     }
 
@@ -41,7 +45,7 @@ public class CityDumpGenerator implements CommandLineRunner {
                 CityInfo[].class);
 
         if (cityInfos.length == 0) {
-            log.error("No city information found : expected city name");
+            log.info("No city information found for city : " + strings[0]);
             return;
         }
 
@@ -64,7 +68,7 @@ public class CityDumpGenerator implements CommandLineRunner {
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
-        
+
         bufferedWriter.close();
         log.info("CSV dump generated...");
     }
@@ -100,7 +104,7 @@ public class CityDumpGenerator implements CommandLineRunner {
 
         return stringBuilder.toString();
     }
-    
+
     /**
      * creates new file.
      *
@@ -110,15 +114,15 @@ public class CityDumpGenerator implements CommandLineRunner {
      */
     private File createNewFile(String fileName, String directory) {
         try {
-            
+
             File dir = new File(directory);
-            
+
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            
+
             File file = new File(dir, fileName);
-            
+
             if (file.exists()) {
                 file.delete();
             }
