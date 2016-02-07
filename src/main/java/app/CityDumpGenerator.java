@@ -115,13 +115,13 @@ public class CityDumpGenerator implements CommandLineRunner {
     private File createNewFile(String fileName, String directory) {
         try {
 
-            File dir = new File(directory);
+            final File dir = new File(directory);
 
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            File file = new File(dir, fileName);
+            final File file = new File(dir, fileName);
 
             if (file.exists()) {
                 file.delete();
