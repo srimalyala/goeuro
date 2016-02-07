@@ -15,18 +15,18 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 /**
- * Main class which retrieves consumes api resource to get city information.
+ * Main class which retrieves consumes api resource to get city information and generates CSV file.
  * This class is executanle using java -jar "build/libs/gs-consuming-rest-0.1.7.jar"
  *
  * @author srikanth
  */
 @SpringBootApplication
-public class Application implements CommandLineRunner {
+public class CityDumpGenerator implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(CityDumpGenerator.class);
 
     public static void main(String args[]) {
-        SpringApplication.run(Application.class, args[0]);
+        SpringApplication.run(CityDumpGenerator.class, args[0]);
     }
 
     @Override
@@ -87,9 +87,7 @@ public class Application implements CommandLineRunner {
         final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(cityInfo.get_id()).append(",");
-
         stringBuilder.append(cityInfo.getName()).append(",");
-
         stringBuilder.append(cityInfo.getType()).append(",");
 
         if (cityInfo.getGeo_position() != null) {
@@ -103,6 +101,8 @@ public class Application implements CommandLineRunner {
     }
     
     /**
+     * creates new file.
+     *
      * @param fileName
      * @param directory
      * @return

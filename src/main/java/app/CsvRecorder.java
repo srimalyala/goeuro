@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 
 
 /**
+ * This class is used in generating CSV files.
+ *
  * @author srikanth
  */
 public class CsvRecorder {
